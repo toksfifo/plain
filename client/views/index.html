@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app='plainApp'>
+	<head>
+		<title></title>
+	</head>
+
+	<body>
+		<div ng-controller="SampleController as sample">
+			<p>hi {{count}} - {{3+2}}</p>
+			<li ng-repeat="user in users">{{user.name}}</li>
+			<form ng-submit="createUser()">
+				<input type="text" placeholder="username" ng-model="userName"></input>
+				<button type="submit">Add</button>
+				{{userName}}
+			</form>
+		<div>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.js"></script>
+		<script type="text/javascript" src="/client/js/app.js"></script>
+		<script type="text/javascript" src="/client/js/controllers/sample-controller.js"></script>
+		
+	</body>
+</html>
