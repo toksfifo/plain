@@ -5,14 +5,25 @@
 	</head>
 
 	<body>
-		<div ng-controller="SampleController as sample">
-			<p>hi {{count}} - {{3+2}}</p>
-			<li ng-repeat="user in users">{{user.name}}</li>
+		<div ng-controller="SampleController">
+			<div ng-repeat="user in users">
+				<li><a href ng-click="newUser(user)">{{user.name}}</a></li>
+			</div>
+			
 			<form ng-submit="createUser()">
 				<input type="text" placeholder="username" ng-model="userName"></input>
-				<button type="submit">Add</button>
-				{{userName}}
+				<!-- <button type="submit">Add</button> -->
 			</form>
+
+			<li ng-repeat="folder in currentUser.folders"><a href ng-click="newFolder(folder)">{{folder.name}}</a></li>
+
+			<form ng-submit="addTodo()">
+				<input type="text" placeholder="add new task" ng-model="newTodo">
+			</form>
+
+			<li ng-repeat="todo in currentUser.folders[arrayObjectIndexOfName(currentUser.folders, currentFolder.name)].todos">{{todo}}</li> 
+			<p>current user: {{currentUser.name}}</p>
+			<p>current folder: {{currentFolder.name}}</p>
 		<div>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>

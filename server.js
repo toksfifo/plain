@@ -17,6 +17,8 @@ app.use('', express.static(__dirname));
 // REST API
 app.get('/api/users', SampleController.list);
 app.post('/api/users', SampleController.create);
+app.get('/api/users/:userName', SampleController.retrieve);
+app.post('/api/users/:userName', SampleController.edit);
 
 app.listen(3000, function() {
 	console.log('lisening on port 3000');
