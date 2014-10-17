@@ -15,11 +15,19 @@ app.get('/', function(req,res) {
 app.use('', express.static(__dirname));
 
 // REST API
-app.get('/api/users', SampleController.list);
-app.post('/api/users', SampleController.create);
-app.get('/api/users/:userName', SampleController.retrieve);
-app.post('/api/users/:userName', SampleController.edit);
+app.get('/api/users', SampleController.getAllUsers);
+app.post('/api/users', SampleController.postSingleUser);
+app.get('/api/users/:userName', SampleController.getSingleUser);
+app.get('/api/users/:userName/folders', SampleController.getAllFolders);
+app.post('/api/users/:userName/folders', SampleController.postSingleFolder);
+app.delete('/api/users/:userName/folders/:folderName', SampleController.deleteSingleFolder);
+app.get('/api/users/:userName/folders/:folderName', SampleController.getAllTodos);
+app.post('/api/users/:userName/folders/:folderName', SampleController.postSingleTodo);
+app.delete('/api/users/:userName/folders/:folderName/:todoName', SampleController.deleteSingleTodo);
+app.put('/api/users/:userName/folders/:folderName/:todoName', SampleController.updateSingleTodo);
+app.put('/api/users/:userName/folders/:folderName', SampleController.updateSingleFolder);
+
 
 app.listen(3000, function() {
 	console.log('lisening on port 3000');
-})
+});
