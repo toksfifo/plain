@@ -1,73 +1,55 @@
-app.controller('SampleController', ['$scope', '$resource', function($scope, $resource) {
-	$scope.count = 7;
+app.controller('SampleController', ['$scope', '$resource', '$http', function($scope, $resource, $http) {
 
+	$scope.currentUser;
+	$scope.currentFolder;
 
-	var User = $resource('/api/users');
-
-	User.query(function(results) {
-		$scope.users = results;
-		$scope.currentUser = $scope.users[24];
-		$scope.currentFolder = $scope.currentUser.folders[0];
-	})
+	$http.get('api/users')
+		.success(function(data) {
+			$scope.users = data;
+		})
+		.error(function(data) {
+			console.log('Error: ', data);
+		});
 
 	$scope.createUser = function() {
 		if ($scope.userName) {
-			var user = new User();
-			user.name = $scope.userName;
-			user.folders = [{
-				name: 'Important',
-				todos: ['hi']
-			},{
-				name: 'Urgent',
-				todos: []
-			},{
-				name: 'Chill',
-				todos: []
-			}];
-			user.$save(function(result) {
-				$scope.users.push(result);
-				$scope.userName = '';
-			});
+			$http.post('api/users', {name: $scope.userName})
+				.success(function(data) {
+					$scope.users.push(data);
+					$scope.userName = '';
+				})
+				.error(function(data) {
+					console.log('Error: ', data);
+				});
 		}
-		
-		// $scope.users.push({name: $scope.userName});
-		// $scope.userName = '';
 	};
 
+	$scope.listOfTodos = function() {
+		if ($scope.currentUser && $scope.currentFolder) {
+			return $scope.currentUser.folders[$scope.arrayObjectIndexOfName($scope.currentUser.folders, $scope.currentFolder.name)].todos;
+		}
+	};
 	
-
-	$scope.newUser = function(user) {
+	$scope.switchUser = function(user) {
 		$scope.currentUser = user;
 	};
 
-	// $scope.isCurrent = function(user) {
-	// 	return $scope.currentUser == user;
-	// };
-
-	$scope.newFolder = function(folder) {
+	$scope.switchFolder = function(folder) {
 		$scope.currentFolder = folder;
 	}
 
-	$scope.addTodo = function() {
+	$scope.createTodo = function() {
 		if ($scope.newTodo) {
-
-			var SpecificUser = $resource('/api/users/:userName', {userName:'@name'});
-			SpecificUser.get({userName: $scope.currentUser.name}, function(user) {
-				console.log('user:', user);
-				var folderIndex = $scope.arrayObjectIndexOfName($scope.currentUser.folders, $scope.currentFolder.name);
-				user.folders[folderIndex].todos.push($scope.newTodo);
-				$scope.newTodo = '';
-				user.$save(function() {
-					
+			$http.post('api/users/' + $scope.currentUser.name + '/folders/' + $scope.currentFolder.name, {name: $scope.newTodo})
+				.success(function(data) {
+					$scope.listOfTodos().push($scope.newTodo);
+					$scope.newTodo = '';
+				})
+				.error(function(data) {
+					console.log('Error: ', data);
 				});
-			})
-
-			// var folderIndex = $scope.arrayObjectIndexOfName($scope.currentUser.folders, $scope.currentFolder.name);
-			// $scope.currentUser.folders[folderIndex].todos.push($scope.newTodo);
-			// $scope.newTodo = '';
-			// $scope.currentUser.$save();
 		}
-	}
+	};
 
 	$scope.arrayObjectIndexOfName = function(myArray, searchTerm) {
 		if (myArray) {
