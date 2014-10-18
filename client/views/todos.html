@@ -1,0 +1,21 @@
+<div ng-controller="SampleController">
+	<p>from Url: {{fromUrl}}</p>
+	<div ng-repeat="user in users">
+		<li><a href ng-click="switchUser(user); currentFolder=currentUser.folders[0]">{{user.name}}</a></li>
+	</div>
+	
+	<form ng-submit="createUser()">
+		<input type="text" placeholder="username" ng-model="userName"></input>
+		<!-- <button type="submit">Add</button> -->
+	</form>
+
+	<li ng-repeat="folder in currentUser.folders"><a href ng-click="switchFolder(folder)">{{folder.name}}</a></li>
+
+	<form ng-submit="createTodo()">
+		<input type="text" placeholder="add new task" ng-model="newTodo">
+	</form>
+
+	<li ng-repeat="todo in listOfTodos()">{{todo}}</li> 
+	<p>current user: {{currentUser.name}}</p>
+	<p>current folder: {{currentFolder.name}}</p>
+<div>

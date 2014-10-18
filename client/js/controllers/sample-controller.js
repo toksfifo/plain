@@ -1,5 +1,6 @@
-app.controller('SampleController', ['$scope', '$resource', '$http', function($scope, $resource, $http) {
+app.controller('SampleController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
+	$scope.fromUrl = $routeParams.userName;
 	$scope.currentUser;
 	$scope.currentFolder;
 

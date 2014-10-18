@@ -2,34 +2,15 @@
 <html ng-app='plainApp'>
 	<head>
 		<title></title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+		<script type="text/javascript" src="/client/js/app.js"></script>
+		<script type="text/javascript" src="/client/js/controllers/sample-controller.js"></script>
 	</head>
 
 	<body>
-		<div ng-controller="SampleController">
-			<div ng-repeat="user in users">
-				<li><a href ng-click="switchUser(user); currentFolder=currentUser.folders[0]">{{user.name}}</a></li>
-			</div>
-			
-			<form ng-submit="createUser()">
-				<input type="text" placeholder="username" ng-model="userName"></input>
-				<!-- <button type="submit">Add</button> -->
-			</form>
 
-			<li ng-repeat="folder in currentUser.folders"><a href ng-click="switchFolder(folder)">{{folder.name}}</a></li>
+		<div ng-view></div>		
 
-			<form ng-submit="createTodo()">
-				<input type="text" placeholder="add new task" ng-model="newTodo">
-			</form>
-
-			<li ng-repeat="todo in listOfTodos()">{{todo}}</li> 
-			<p>current user: {{currentUser.name}}</p>
-			<p>current folder: {{currentFolder.name}}</p>
-		<div>
-
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.js"></script>
-		<script type="text/javascript" src="/client/js/app.js"></script>
-		<script type="text/javascript" src="/client/js/controllers/sample-controller.js"></script>
-		
 	</body>
 </html>
