@@ -4,9 +4,20 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', function(
 	$scope.currentUser;
 	$scope.currentFolder;
 
-	$http.get('api/users')
+	$http.get('api/users/' + $routeParams.userName)
 		.success(function(data) {
-			$scope.users = data;
+			if (data) { // if user exists
+				$scope.currentUser = data;
+			}
+			else { // if user doesn't exist
+				$scope.userName = $routeParams.userName;
+				$scope.createUser();
+			}
+			
+			// set current folder
+			var importantFolderIndex = $scope.arrayObjectIndexOfName($scope.currentUser.folders, 'Important');
+			var importantFolder = $scope.currentUser.folders[importantFolderIndex];
+			$scope.currentFolder = importantFolder || $scope.currentUser.folders[0];
 		})
 		.error(function(data) {
 			console.log('Error: ', data);
@@ -16,8 +27,24 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', function(
 		if ($scope.userName) {
 			$http.post('api/users', {name: $scope.userName})
 				.success(function(data) {
-					$scope.users.push(data);
-					$scope.userName = '';
+					$scope.currentUser = data;
+				})
+				.error(function(data) {
+					console.log('Error: ', data);
+				});
+		}
+	};
+
+	$scope.createFolder = function() {
+		if ($scope.newFolder) {
+			$http.post('api/users/' + $scope.currentUser.name + '/folders', {name: $scope.newFolder})
+				.success(function(data) {
+					$scope.currentUser.folders.push(
+						{
+							name: $scope.newFolder,
+							todos: []
+						});
+					$scope.newFolder = '';
 				})
 				.error(function(data) {
 					console.log('Error: ', data);
@@ -31,9 +58,9 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', function(
 		}
 	};
 	
-	$scope.switchUser = function(user) {
-		$scope.currentUser = user;
-	};
+	// $scope.switchUser = function(user) {
+	// 	$scope.currentUser = user;
+	// };
 
 	$scope.switchFolder = function(folder) {
 		$scope.currentFolder = folder;

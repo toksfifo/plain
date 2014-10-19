@@ -4,7 +4,7 @@ app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 		when('/', {
 			templateUrl: 'client/views/home.html',
-			controller: 'SampleController'
+			controller: ''
 		}).
 		when('/users/:userName', {
 			templateUrl: 'client/views/todos.html',

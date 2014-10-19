@@ -1,12 +1,16 @@
 <div ng-controller="SampleController">
 	<p>from Url: {{fromUrl}}</p>
+	<!-- 
 	<div ng-repeat="user in users">
 		<li><a href ng-click="switchUser(user); currentFolder=currentUser.folders[0]">{{user.name}}</a></li>
 	</div>
 	
 	<form ng-submit="createUser()">
 		<input type="text" placeholder="username" ng-model="userName"></input>
-		<!-- <button type="submit">Add</button> -->
+	</form>
+ -->
+ 	<form ng-submit="createFolder()">
+		<input type="text" placeholder="add new folder" ng-model="newFolder">
 	</form>
 
 	<li ng-repeat="folder in currentUser.folders"><a href ng-click="switchFolder(folder)">{{folder.name}}</a></li>
