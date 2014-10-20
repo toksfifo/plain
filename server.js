@@ -28,6 +28,10 @@ app.put('/api/users/:userName/folders/:folderName/:todoName', SampleController.u
 app.put('/api/users/:userName/folders/:folderName', SampleController.updateSingleFolder);
 
 
-app.listen(3000, function() {
-	console.log('lisening on port 3000');
+// app.listen(3000, function() {
+// 	console.log('lisening on port 3000');
+// });
+
+app.listen(process.env.PORT, function() {
+	console.log('listening on heroku');
 });
