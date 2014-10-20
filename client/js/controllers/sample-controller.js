@@ -1,4 +1,4 @@
-app.controller('SampleController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+app.controller('SampleController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
 
 	$scope.fromUrl = $routeParams.userName;
 	$scope.currentUser;
@@ -23,7 +23,10 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', function(
 			console.log('Error: ', data);
 		});
 
+	
+
 	$scope.createUser = function() {
+
 		if ($scope.userName) {
 			$http.post('api/users', {name: $scope.userName})
 				.success(function(data) {
@@ -35,7 +38,13 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', function(
 		}
 	};
 
+	$scope.redirect = function() {
+		console.log('go');
+	};
+
+
 	$scope.createFolder = function() {
+		// console.log('go');
 		if ($scope.newFolder) {
 			$http.post('api/users/' + $scope.currentUser.name + '/folders', {name: $scope.newFolder})
 				.success(function(data) {

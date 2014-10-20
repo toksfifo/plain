@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var SampleController = require('./server/controllers/sample-controller.js');
 
-mongoose.connect('mongodb://localhost:27017/users');
-// mongoose.connect('mongodb://heroku_app30863986:35qnqeqhhc44svh1ams4briida@ds045970.mongolab.com:45970/heroku_app30863986');
+// mongoose.connect('mongodb://localhost:27017/users');
+mongoose.connect('mongodb://heroku_app30863986:35qnqeqhhc44svh1ams4briida@ds045970.mongolab.com:45970/heroku_app30863986');
 
 app.use(bodyParser());
 
@@ -29,10 +29,10 @@ app.put('/api/users/:userName/folders/:folderName/:todoName', SampleController.u
 app.put('/api/users/:userName/folders/:folderName', SampleController.updateSingleFolder);
 
 
-app.listen(3000, function() {
-	console.log('lisening on port 3000');
-});
-
-// app.listen(process.env.PORT, function() {
-// 	console.log('listening on heroku');
+// app.listen(3000, function() {
+// 	console.log('lisening on port 3000');
 // });
+
+app.listen(process.env.PORT, function() {
+	console.log('listening on heroku');
+});
