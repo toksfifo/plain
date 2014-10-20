@@ -1,0 +1,22 @@
+/*home.html*/
+
+#banner {
+	font-size: 80px;
+	text-align: center;
+	font-family: Helvetica;
+}
+
+#tagline {
+	color: gray;
+	text-align: center;
+	font-family: Helvetica;
+	font-weight: 300;
+	font-size: 30px;
+}
+
+#signin {
+	text-align: center;
+}
+
+/*todos.html*/
+
