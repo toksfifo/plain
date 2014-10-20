@@ -13,7 +13,7 @@ module.exports.postSingleUser = function(req,res) {
 	user.name = req.body.name;
 	user.folders = [{
 		name: 'Important',
-		todos: ['hi']
+		todos: []
 	},{
 		name: 'Urgent',
 		todos: []
