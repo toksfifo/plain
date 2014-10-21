@@ -1,8 +1,8 @@
 app.controller('SampleController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
 
-	$scope.fromUrl = $routeParams.userName;
 	$scope.currentUser;
 	$scope.currentFolder;
+	$scope.show;
 
 	$http.get('api/users/' + $routeParams.userName)
 		.success(function(data) {
@@ -38,9 +38,9 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 		}
 	};
 
-	$scope.redirect = function() {
-		console.log('go');
-	};
+	// $scope.redirect = function() {
+	// 	console.log('go');
+	// };
 
 
 	$scope.createFolder = function() {
@@ -67,9 +67,13 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 		}
 	};
 	
-	// $scope.switchUser = function(user) {
-	// 	$scope.currentUser = user;
-	// };
+	$scope.isActive = function(folder) {
+		return folder == $scope.currentFolder;
+	}
+
+	$scope.isFirst = function(folder) {
+		return folder == $scope.currentUser.folders[0];
+	}
 
 	$scope.switchFolder = function(folder) {
 		$scope.currentFolder = folder;
@@ -88,6 +92,17 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 		}
 	};
 
+	$scope.deleteTodo = function(todo) {
+		$http.delete('/api/users/' + $scope.currentUser.name + '/folders/' + $scope.currentFolder.name + '/' + todo)
+			.success(function(data) {
+				var todoIndex = $scope.listOfTodos().indexOf(todo);
+				$scope.listOfTodos().splice(todoIndex, 1);
+			})
+			.error(function(data) {
+				console.log('Error: ', data);
+			});
+	};
+
 	$scope.arrayObjectIndexOfName = function(myArray, searchTerm) {
 		if (myArray) {
 			for (var i=0; i<myArray.length; i++) {
@@ -95,7 +110,6 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 			}
 			return -1;
 		}
-		
 	};
 
 }]);

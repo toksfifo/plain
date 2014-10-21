@@ -1,16 +1,16 @@
 <div id='mainTodos' ng-controller="SampleController">
 
 	<div id='left'>
-		<div class='folder' ng-repeat="folder in currentUser.folders" ng-click="switchFolder(folder)" ng-class='{active: folder==currentFolder, top: folder==currentUser.folders[0]}'>{{folder.name}}<div class='number'>{{folder.todos.length}}</div></div>
+		<div class='folder' ng-repeat="folder in currentUser.folders" ng-click="switchFolder(folder)" ng-class='{active: isActive(folder), top: isFirst(folder)}'>{{folder.name}}<div class='number'>{{folder.todos.length}}</div></div>
 	</div>
 
 	<div id='middle'>
 		<div id="middleLeft">
-			<div class='todo' ng-class="{'hide': $odd}" ng-repeat="todo in listOfTodos()">{{todo}}</div>
+			<div class='todo' ng-class="{'hide': $odd}" ng-repeat="todo in listOfTodos()" ng-mouseover="show=true" ng-mouseout="show=false">{{todo}}<div ng-show="show" ng-click="deleteTodo(todo)" class="check"></div></div>
 		</div>
 
 		<div id='middleRight'>
-			<div class='todo' ng-class="{'hide': $even}" ng-repeat="todo in listOfTodos()">{{todo}}</div>
+			<div class='todo todoRight' ng-class="{'hide': $even}" ng-repeat="todo in listOfTodos()" ng-mouseover="show=true" ng-mouseout="show=false">{{todo}}<div ng-show="show" class="check"></div></div>
 		</div>
 	</div>
 
