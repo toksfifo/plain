@@ -60,6 +60,18 @@
 #mainTodos {
 	font-size: 20px;
 	font-family: Helvetica, sans-serif;
+	color: black;
+}
+
+.active {
+	background-color: white;
+	color: gray;
+	/*todo*/
+	-webkit-transition:0.5s;
+}
+
+.top {
+	border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 /*left*/
@@ -75,6 +87,8 @@
 	top: 0px;
 	left: 0px;
 	background-color: rgba(232,232,232,1);
+	/*todo*/
+	transition: ;
 }
 
 #left .folder {
@@ -99,14 +113,47 @@
 #middle {
 	float: left;
 	width: 40%;
+	min-height: 100vh;
 	/*todo*/
 	min-width: ;
 	margin-top: 50px;
 	position: absolute;
 	top: 0px;
 	left: 20%;
-
+	/*border: 1px solid black;*/
+	color: gray;
 }
+
+#middle #middleLeft {
+	width: 50%;
+	/*border: 1px solid black;*/
+	float: left;
+}
+
+#middle #middleRight {
+	width: 50%;
+	/*border: 1px solid black;*/
+	float: left;
+}
+
+#middle .todo {
+	border: 1px solid rgba(0,0,0,0.1);
+	height: 35px;
+	width: 200px;
+	font-size: 18px;
+	margin-bottom: 15px;
+	float: right;
+	line-height: 35px;
+	padding-left: 10px;
+	/*background-color: rgba(0,0,0,0.05);*/
+	/*todo*/
+	-webkit-border-radius: 3px;
+}
+
+#middle .hide {
+	display: none;
+}
+
 
 #right {
 	float: left;
@@ -116,7 +163,6 @@
 	margin-top: 50px;
 	position: absolute;
 	left: 60%;
-
 }
 
 

@@ -1,13 +1,17 @@
 <div id='mainTodos' ng-controller="SampleController">
 
 	<div id='left'>
-		<p ng-hide="currentUser.folders">&nbsp;</p>
-		<div class='folder' ng-class='{}' ng-repeat="folder in currentUser.folders" ng-click="switchFolder(folder)">{{folder.name}}<div class='number'>{{folder.todos.length}}</div></div>
+		<div class='folder' ng-repeat="folder in currentUser.folders" ng-click="switchFolder(folder)" ng-class='{active: folder==currentFolder, top: folder==currentUser.folders[0]}'>{{folder.name}}<div class='number'>{{folder.todos.length}}</div></div>
 	</div>
 
 	<div id='middle'>
-		<p ng-hide="listOfTodos()">&nbsp;</p>
-		<li ng-repeat="todo in listOfTodos()">{{todo}}</li>
+		<div id="middleLeft">
+			<div class='todo' ng-class="{'hide': $odd}" ng-repeat="todo in listOfTodos()">{{todo}}</div>
+		</div>
+
+		<div id='middleRight'>
+			<div class='todo' ng-class="{'hide': $even}" ng-repeat="todo in listOfTodos()">{{todo}}</div>
+		</div>
 	</div>
 
 	<div id='right'>
@@ -20,13 +24,4 @@
 		</form>
 	</div>
 
- 	
-
-	
-
-	
-
-	 
-<!-- 	<p>current user: {{currentUser.name}}</p>
-	<p>current folder: {{currentFolder.name}}</p> -->
 <div>
