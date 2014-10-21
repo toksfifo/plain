@@ -110,6 +110,9 @@
 	right: 20px;
 }
 
+
+
+/*left*/
 #middle {
 	float: left;
 	width: 40%;
@@ -155,17 +158,32 @@
 }
 
 
+
+/*right*/
 #right {
 	float: left;
-	width: 39%;
+	width: 40%;
+	min-height: 100vh;
 	/*todo*/
 	min-width: ;
 	margin-top: 50px;
 	position: absolute;
+	top: 0px;
 	left: 60%;
+	/*border: 1px solid black;*/
+	text-align: center;
 }
 
+#right .create {
+	height: 35px;
+	width: 300px;
+	font-size: 18px;
+	margin-bottom: 15px;
+	border: 1px solid rgba(0,0,0,0.1);
+	/*todo*/
+	-webkit-border-radius: 3px;
 
+}
 
 
 
