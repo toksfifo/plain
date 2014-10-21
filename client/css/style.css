@@ -1,5 +1,10 @@
 /*home.html*/
 
+html, body {
+	margin: 0px;
+	padding: 0px;
+}
+
 #mainHome {
 	height: 80vh;
 	font-family: Helvetica, sans-serif;
@@ -61,6 +66,9 @@
 	font-size: 20px;
 	font-family: Helvetica, sans-serif;
 	color: black;
+	width: 100%;
+	min-width: 1100px;
+	height: 100vh;
 }
 
 .active {
@@ -79,11 +87,10 @@
 	float: left;
 	width: 20%;
 	min-height: 100vh;
-	/*todo*/
-	min-width: ;
+	min-width: 208px;
 	padding-top: 50px;
 	/*border: 1px solid black;*/
-	position: absolute;
+	/*position: absolute;*/
 	top: 0px;
 	left: 0px;
 	background-color: rgba(232,232,232,1);
@@ -112,25 +119,26 @@
 
 
 
-/*left*/
+/*middle*/
 #middle {
 	float: left;
-	width: 40%;
+	width: 50%;
 	min-height: 100vh;
-	/*todo*/
-	min-width: ;
+	min-width: 521px;
 	margin-top: 50px;
-	position: absolute;
+	/*position: absolute;*/
 	top: 0px;
 	left: 20%;
 	/*border: 1px solid black;*/
 	color: gray;
+	/*text-align: center;*/
 }
 
 #middle #middleLeft {
 	width: 50%;
 	/*border: 1px solid black;*/
 	float: left;
+	/*text-align: center;*/
 }
 
 #middle #middleRight {
@@ -144,11 +152,9 @@
 	height: 35px;
 	width: 200px;
 	font-size: 18px;
-	margin-bottom: 15px;
-	float: right;
+	margin: 0 auto 15px auto;
 	line-height: 35px;
 	padding-left: 10px;
-	/*background-color: rgba(0,0,0,0.05);*/
 	/*todo*/
 	-webkit-border-radius: 3px;
 }
@@ -162,14 +168,13 @@
 /*right*/
 #right {
 	float: left;
-	width: 40%;
+	width: 30%;
 	min-height: 100vh;
-	/*todo*/
-	min-width: ;
+	min-width: 330px;
 	margin-top: 50px;
-	position: absolute;
+	/*position: absolute;*/
 	top: 0px;
-	left: 60%;
+	left: 70%;
 	/*border: 1px solid black;*/
 	text-align: center;
 }
