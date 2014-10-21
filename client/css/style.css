@@ -1,6 +1,6 @@
 /*home.html*/
 
-#main {
+#mainHome {
 	height: 80vh;
 	font-family: Helvetica, sans-serif;
 }
@@ -48,9 +48,102 @@
 	-o-border-radius: 2px;
 	-ms-border-radius: 2px;
 	position: relative;
-	top: -1px;
+	/*top: -1px;*/
 	/*left: -7px;*/
 }
 
+
+
+
 /*todos.html*/
+
+#mainTodos {
+	font-size: 20px;
+	font-family: Helvetica, sans-serif;
+}
+
+/*left*/
+#left {
+	float: left;
+	width: 20%;
+	min-height: 100vh;
+	/*todo*/
+	min-width: ;
+	padding-top: 50px;
+	/*border: 1px solid black;*/
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(232,232,232,1);
+}
+
+#left .folder {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	width: 90%;
+	height: 40px;
+	/*text-align: center;*/
+	/*margin-bottom: 20px;*/
+	padding-left: 10%;
+	padding-top: 15px;
+	cursor: pointer;
+}
+
+#left .number {
+	float: right;
+	/*margin-left: 50px;*/
+	/*border: 1px solid black;*/
+	position: relative;
+	right: 20px;
+}
+
+#middle {
+	float: left;
+	width: 40%;
+	/*todo*/
+	min-width: ;
+	margin-top: 50px;
+	position: absolute;
+	top: 0px;
+	left: 20%;
+
+}
+
+#right {
+	float: left;
+	width: 39%;
+	/*todo*/
+	min-width: ;
+	margin-top: 50px;
+	position: absolute;
+	left: 60%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
