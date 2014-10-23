@@ -1,8 +1,11 @@
-<div id='main'>
+<div id='mainHome'>
 	<h1 id="banner">plain</h1>
 	<h2 id="tagline">a simple to-do list application</h2>
 	<div id="signin">
 		<input id='username' type='text' placeholder='username' ng-model="person">
 		<a ng-href='#/users/{{person}}'><button id='go'>go</button></a>
+		<div id='disclaimer' ng-show="person">
+			<p>note: please do not store any sensitive information</p><p> on this website; it is just a &nbsp; &lcub; &lcub; MEAN &rcub; &rcub; &nbsp; toy.</p>
+		</div>
 	</div>
 </div>

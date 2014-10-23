@@ -2,22 +2,19 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 
 	$scope.currentUser;
 	$scope.currentFolder;
-	$scope.show;
+	$scope.showTodoCheck;
 
 	$http.get('api/users/' + $routeParams.userName)
 		.success(function(data) {
 			if (data) { // if user exists
 				$scope.currentUser = data;
+				$scope.currentFolder = $scope.currentUser.folders[0];
+
 			}
 			else { // if user doesn't exist
 				$scope.userName = $routeParams.userName;
 				$scope.createUser();
 			}
-			
-			// set current folder
-			var importantFolderIndex = $scope.arrayObjectIndexOfName($scope.currentUser.folders, 'Important');
-			var importantFolder = $scope.currentUser.folders[importantFolderIndex];
-			$scope.currentFolder = importantFolder || $scope.currentUser.folders[0];
 		})
 		.error(function(data) {
 			console.log('Error: ', data);
@@ -26,11 +23,11 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 	
 
 	$scope.createUser = function() {
-
 		if ($scope.userName) {
 			$http.post('api/users', {name: $scope.userName})
 				.success(function(data) {
 					$scope.currentUser = data;
+					$scope.currentFolder = $scope.currentUser.folders[0];
 				})
 				.error(function(data) {
 					console.log('Error: ', data);
@@ -80,7 +77,7 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 	}
 
 	$scope.createTodo = function() {
-		if ($scope.newTodo) {
+		if ($scope.newTodo && $scope.currentFolder) {
 			$http.post('api/users/' + $scope.currentUser.name + '/folders/' + $scope.currentFolder.name, {name: $scope.newTodo})
 				.success(function(data) {
 					$scope.listOfTodos().push($scope.newTodo);
@@ -97,6 +94,18 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 			.success(function(data) {
 				var todoIndex = $scope.listOfTodos().indexOf(todo);
 				$scope.listOfTodos().splice(todoIndex, 1);
+			})
+			.error(function(data) {
+				console.log('Error: ', data);
+			});
+	};
+
+	$scope.deleteFolder = function() {
+		$http.delete('/api/users/' + $scope.currentUser.name + '/folders/' + $scope.currentFolder.name)
+			.success(function(data) {
+				var folderIndex = $scope.arrayObjectIndexOfName($scope.currentUser.folders, $scope.currentFolder.name);
+				$scope.currentUser.folders.splice(folderIndex, 1);
+				$scope.currentFolder = $scope.currentUser.folders[0] || false;
 			})
 			.error(function(data) {
 				console.log('Error: ', data);

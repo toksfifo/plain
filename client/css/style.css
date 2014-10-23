@@ -57,6 +57,14 @@ html, body {
 	/*left: -7px;*/
 }
 
+#disclaimer {
+	/*width: 300px;*/
+	color: gray;
+	font-weight: 300;
+	font-size: 16px;
+	margin-top: 40px;
+	/*font-family: serif;*/
+}
 
 
 
@@ -101,6 +109,7 @@ html, body {
 
 #left .folder {
 	border-bottom: 1px solid rgba(0,0,0,0.1);
+	/*border-bottom: -webkit-linear-gradient(left, white, black, white);*/
 	width: 90%;
 	height: 40px;
 	/*text-align: center;*/
@@ -118,6 +127,21 @@ html, body {
 	right: 20px;
 }
 
+#left .numberIndent {
+	float: right;
+	position: relative;
+	right: 50px;
+}
+
+#left .delete {
+	height: 20px;
+	width: 20px;
+	/*border: 1px solid black;*/
+	float: right;
+	background: url('../images/trash/trash_red.png');
+	position: relative;
+	right: 4px;
+}
 
 
 /*middle*/
@@ -161,7 +185,7 @@ html, body {
 	-o-border-radius: 3px;
 	-ms-border-radius: 3px;
 	border-radius: 3px;
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 #middle .todoRight {
@@ -173,11 +197,13 @@ html, body {
 }
 
 #middle .check {
-	height: 10px;
-	width: 10px;
-	border: 1px solid black;
+	height: 20px;
+	width: 20px;
+	/*border: 1px solid black;*/
 	float: right;
-	/*background: url('../images/check/check.png');*/
+	background: url('../images/check/check_green.png');
+	margin-top: 7px;
+	cursor: pointer;
 }
 
 
