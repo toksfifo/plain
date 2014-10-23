@@ -42,7 +42,7 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 
 	$scope.createFolder = function() {
 		// console.log('go');
-		if ($scope.newFolder) {
+		if ($scope.newFolder && $scope.arrayObjectIndexOfName($scope.currentUser.folders, $scope.newFolder)==-1) {
 			$http.post('api/users/' + $scope.currentUser.name + '/folders', {name: $scope.newFolder})
 				.success(function(data) {
 					$scope.currentUser.folders.push(
@@ -51,6 +51,7 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 							todos: []
 						});
 					$scope.newFolder = '';
+					$scope.currentFolder = $scope.currentUser.folders[$scope.currentUser.folders.length-1];
 				})
 				.error(function(data) {
 					console.log('Error: ', data);
@@ -77,7 +78,7 @@ app.controller('SampleController', ['$scope', '$http', '$routeParams', '$locatio
 	}
 
 	$scope.createTodo = function() {
-		if ($scope.newTodo && $scope.currentFolder) {
+		if ($scope.newTodo && $scope.currentFolder && $scope.listOfTodos().indexOf($scope.newTodo)==-1) {
 			$http.post('api/users/' + $scope.currentUser.name + '/folders/' + $scope.currentFolder.name, {name: $scope.newTodo})
 				.success(function(data) {
 					$scope.listOfTodos().push($scope.newTodo);
