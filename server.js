@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var SampleController = require('./server/controllers/sample-controller.js');
 
-// mongoose.connect('mongodb://localhost:27017/users');
-mongoose.connect('mongodb://heroku_app30863986:35qnqeqhhc44svh1ams4briida@ds045970.mongolab.com:45970/heroku_app30863986');
+var mongoUrlTest = 'mongodb://localhost:27017/users';
+mongoose.connect(process.env.MONGOLAB_URI || mongoUrlTest);
 
 app.use(bodyParser());
 
